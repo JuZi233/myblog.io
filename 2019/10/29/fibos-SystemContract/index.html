@@ -7,18 +7,19 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签 - YvYi&#39;s Blog</title>
+<title>SystemContract - YvYi&#39;s Blog</title>
 
 
-    <meta name="description" content="Home Of YvLongPan">
+    <meta name="description" content="newaccount 创建合约账户">
 <meta name="keywords" content="life code games">
-<meta property="og:type" content="website">
-<meta property="og:title" content="YvYi&#39;s Blog">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;tags&#x2F;index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SystemContract">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;29&#x2F;fibos-SystemContract&#x2F;index.html">
 <meta property="og:site_name" content="YvYi&#39;s Blog">
-<meta property="og:description" content="Home Of YvLongPan">
+<meta property="og:description" content="newaccount 创建合约账户">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;og_image.png">
+<meta property="og:updated_time" content="2019-10-29T09:13:46.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;og_image.png">
 
@@ -78,7 +79,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="YvYi&#39;s Blog" height="28">
+                <img src="/images/logo.svg" alt="SystemContract" height="28">
             
             </a>
         </div>
@@ -95,7 +96,7 @@
                 <a class="navbar-item"
                 href="/categories">分类</a>
                 
-                <a class="navbar-item is-active"
+                <a class="navbar-item"
                 href="/tags">标签</a>
                 
                 <a class="navbar-item"
@@ -128,18 +129,232 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card widget">
-    <div class="card-content">
-        <div class="menu">
-            <h3 class="menu-label">
-                标签
-            </h3>
-            <div class="field is-grouped is-grouped-multiline">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-10-29T06:57:26.366Z">2019-10-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 565 个字)
+                </span>
+                
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
                 
             </div>
         </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                SystemContract
+            
+        </h1>
+        <div class="content">
+            <h2 id="newaccount"><a href="#newaccount" class="headerlink" title="newaccount"></a>newaccount</h2><hr>
+<p>创建合约账户</p>
+<a id="more"></a>
+
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>creator</td>
+<td>string</td>
+<td>创建者的账户名</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>被创建者的账户名</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>string</td>
+<td>被创建者账户 owner 权限公钥</td>
+</tr>
+<tr>
+<td>active</td>
+<td>string</td>
+<td>被创建者 active 权限公钥</td>
+</tr>
+</tbody></table>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const FIBOS = require(<span class="hljs-string">'fibos.js'</span>);</span><br><span class="line"></span><br><span class="line">const fibos_client = FIBOS(&#123;</span><br><span class="line">  // fibos 测试网 chainId</span><br><span class="line">  chainId: <span class="hljs-string">'68cee14f598d88d340b50940b6ddfba28c444b46cd5f33201ace82c78896793a'</span>,</span><br><span class="line">  keyProvider: <span class="hljs-string">'PRIVATE_KEY'</span>, // 你的私钥</span><br><span class="line">  httpEndpoint: <span class="hljs-string">'http://api.testnet.fo'</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">let</span> ctx = fibos_client.contractSync(<span class="hljs-string">'eosio'</span>);</span><br><span class="line"></span><br><span class="line">var r = ctx.newaccountSync(&#123;</span><br><span class="line">    creator:<span class="hljs-string">'eosio'</span>,</span><br><span class="line">    name:<span class="hljs-string">'NEW_ACCOUNT_NAME'</span>,</span><br><span class="line">    owner:<span class="hljs-string">'PUBLIC_KEY_FOR_OWNER_PERMISSION'</span>,</span><br><span class="line">    active:<span class="hljs-string">'PUBLIC_KEY_FOR_ACTIVE_PERMISSION'</span></span><br><span class="line">&#125;,&#123;</span><br><span class="line">    authorization: <span class="hljs-string">'ACCOUNT_FOR_PRIVATE_KEY'</span> // 私钥对应的账号</span><br><span class="line">&#125;);</span><br><span class="line">console.log(r);</span><br></pre></td></tr></table></figure>
+
+<h2 id="buyrambytes"><a href="#buyrambytes" class="headerlink" title="buyrambytes"></a>buyrambytes</h2><hr>
+<p>创建者调用该方法为被创建者购买内存来存放新账户的信息</p>
+<h3 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h3><table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>payer</td>
+<td>string</td>
+<td>创建者的账户名</td>
+</tr>
+<tr>
+<td>receiver</td>
+<td>string</td>
+<td>被创建者的账户名</td>
+</tr>
+<tr>
+<td>bytes</td>
+<td>uint32</td>
+<td>购买的内存大小（字节）</td>
+</tr>
+</tbody></table>
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const FIBOS = require(<span class="hljs-string">'fibos.js'</span>);</span><br><span class="line"></span><br><span class="line">const fibos_client = FIBOS(&#123;</span><br><span class="line">  // fibos 测试网 chainId</span><br><span class="line">  chainId: <span class="hljs-string">'68cee14f598d88d340b50940b6ddfba28c444b46cd5f33201ace82c78896793a'</span>,</span><br><span class="line">  keyProvider: <span class="hljs-string">'PRIVATE_KEY'</span>, // 你的私钥</span><br><span class="line">  httpEndpoint: <span class="hljs-string">'http://api.testnet.fo'</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">let</span> ctx = fibos_client.contractSync(<span class="hljs-string">'eosio'</span>);</span><br><span class="line"></span><br><span class="line">var r = ctx.buyrambytesSync(&#123;</span><br><span class="line">      payer: <span class="hljs-string">'ACCOUNT_OF_PAYER'</span>,</span><br><span class="line">      receiver: <span class="hljs-string">'ACCOUNT_OF_RECEIVER'</span>,</span><br><span class="line">      bytes: 4096</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    authorization: <span class="hljs-string">'ACCOUNT_FOR_PRIVATE_KEY'</span> // 私钥对应的账号</span><br><span class="line">&#125;);</span><br><span class="line">console.log(r);</span><br></pre></td></tr></table></figure>
+
+<h2 id="delegatebw"><a href="#delegatebw" class="headerlink" title="delegatebw"></a>delegatebw</h2><hr>
+<p>抵押通证获取 cpu 和带宽资源</p>
+<h3 id="参数-2"><a href="#参数-2" class="headerlink" title="参数"></a>参数</h3><table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>from</td>
+<td>string</td>
+<td>资源抵押者的账户名</td>
+</tr>
+<tr>
+<td>receiver</td>
+<td>string</td>
+<td>资源接受者的账户名</td>
+</tr>
+<tr>
+<td>stake_net_quantity</td>
+<td>string</td>
+<td>抵押者为接受者抵押 FO 获取 NET</td>
+</tr>
+<tr>
+<td>stake_cpu_quantity</td>
+<td>string</td>
+<td>抵押者为接受者抵押 FO 获取 CPU</td>
+</tr>
+<tr>
+<td>transfer</td>
+<td>bool</td>
+<td>代表抵押资源同时是否将对应通证转账给接受者</td>
+</tr>
+</tbody></table>
+<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">const FIBOS = require(<span class="hljs-string">'fibos.js'</span>);</span><br><span class="line"></span><br><span class="line">const fibos_client = FIBOS(&#123;</span><br><span class="line">  // fibos 测试网 chainId</span><br><span class="line">  chainId: <span class="hljs-string">'68cee14f598d88d340b50940b6ddfba28c444b46cd5f33201ace82c78896793a'</span>,</span><br><span class="line">  keyProvider: <span class="hljs-string">'PRIVATE_KEY'</span>, // 你的私钥</span><br><span class="line">  httpEndpoint: <span class="hljs-string">'http://api.testnet.fo'</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">let</span> ctx = fibos_client.contractSync(<span class="hljs-string">'eosio'</span>);</span><br><span class="line"></span><br><span class="line">var r = ctx.delegatebwSync(&#123;</span><br><span class="line">      from: <span class="hljs-string">'ACCOUNT_OF_MORTGAGOR'</span>,</span><br><span class="line">      receiver: <span class="hljs-string">'ACCOUNT_OF_RECEIVER'</span>,</span><br><span class="line">      stake_net_quantity: <span class="hljs-string">'3193.0000 FO'</span>,</span><br><span class="line">      stake_cpu_quantity: <span class="hljs-string">'30000.0000 FO'</span>,</span><br><span class="line">      transfer: 0</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    authorization: <span class="hljs-string">'ACCOUNT_FOR_PRIVATE_KEY'</span> // 私钥对应的账号</span><br><span class="line">&#125;);</span><br><span class="line">console.log(r);</span><br></pre></td></tr></table></figure>
+
+<h2 id="claimrewards"><a href="#claimrewards" class="headerlink" title="claimrewards"></a>claimrewards</h2><hr>
+<p>区块生产者领取工资</p>
+<h3 id="参数-3"><a href="#参数-3" class="headerlink" title="参数"></a>参数</h3><table>
+<thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>owner</td>
+<td>string</td>
+<td>区块生产者名称</td>
+</tr>
+</tbody></table>
+<h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const FIBOS = require(<span class="hljs-string">'fibos.js'</span>);</span><br><span class="line"></span><br><span class="line">const fibos_client = FIBOS(&#123;</span><br><span class="line">  // fibos 测试网 chainId</span><br><span class="line">  chainId: <span class="hljs-string">'68cee14f598d88d340b50940b6ddfba28c444b46cd5f33201ace82c78896793a'</span>,</span><br><span class="line">  keyProvider: <span class="hljs-string">'PRIVATE_KEY'</span>, // 你的私钥</span><br><span class="line">  httpEndpoint: <span class="hljs-string">'http://api.testnet.fo'</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">let</span> ctx = fibos_client.contractSync(<span class="hljs-string">'eosio'</span>);</span><br><span class="line"></span><br><span class="line">var r = ctx.claimrewardsSync(&#123;</span><br><span class="line">    owner: <span class="hljs-string">'ACCOUNT_OR_OWNER'</span></span><br><span class="line">&#125;,&#123;</span><br><span class="line">    authorization: <span class="hljs-string">'ACCOUNT_FOR_PRIVATE_KEY'</span> // 私钥对应的账号</span><br><span class="line">&#125;);</span><br><span class="line">console.log(r);</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        
     </div>
-</div></div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/alipay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wechatpay.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/10/29/Hello-fibjs/">
+                <span class="level-item">Hello d3j</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'iVd0o6LHb5lRI2DokXKh0DXE-gzGzoHsz',
+        app_key: 'yAMgH9FnCXnjetMGyDweCXIU',
+        placeholder: 'anything you want'
+    });
+</script>
+
+    </div>
+</div>
+</div>
                 
 
 
@@ -536,7 +751,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="YvYi&#39;s Blog" height="28">
+                    <img src="/images/logo.svg" alt="SystemContract" height="28">
                 
                 </a>
                 <p class="is-size-7">
