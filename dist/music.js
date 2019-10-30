@@ -26,6 +26,13 @@ const ap = new APlayer({
             cover: 'cover2.jpg',
             lrc: 'lrc2.lrc',
             theme: '#ebd0c2'
+        },{
+            name: '庐州月',
+            artist: '许嵩',
+            url: 'http://m10.music.126.net/20191030104110/0195f9d694d55c93b9db6495f5e724a8/ymusic/86de/4d7b/c0dc/b45d9ddf9d7837f0d0bb71707ee1decf.mp3',
+            cover: 'cover3.jpg',
+            lrc: 'lrc3.lrc',
+            theme: '#ebd0c2'
         }
     ]
 });
