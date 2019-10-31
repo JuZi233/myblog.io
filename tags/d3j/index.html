@@ -79,7 +79,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/deemo.png" alt="YvYi&#39;s Blog" height="28">
+                <img src="/images/deemo.jpg" alt="YvYi&#39;s Blog" height="28">
             
             </a>
         </div>
@@ -159,7 +159,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    7 分钟 读完 (大约 987 个字)
+                    7 分钟 读完 (大约 988 个字)
                 </span>
                 
                 
@@ -173,104 +173,126 @@
         </h1>
         <div class="content">
             <h3 id="什么是权限"><a href="#什么是权限" class="headerlink" title="什么是权限"></a>什么是权限</h3><p>FIBOS 账户权限有2种： owner、active，一个账户必须“关联” owner、active 权限。</p>
-<ul>
-<li>owner 拥有超级权限，代表着账户的归属者，因为拥有此权限者可以用于操作其他权限配置，该权限常用事务中（转账、合约 action 等）一般不会使用。</li>
-<li>active 常用业务的权限，比如：转账、投票等。</li>
-</ul>
-<h3 id="账户与权限的关系"><a href="#账户与权限的关系" class="headerlink" title="账户与权限的关系"></a>账户与权限的关系</h3><p>一个完整的账户包含如下属性：</p>
-<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="hljs-string">'account_name'</span>: <span class="hljs-string">'hellofibos01'</span>,</span><br><span class="line">  <span class="hljs-string">'head_block_num'</span>: 10,</span><br><span class="line">  <span class="hljs-string">'head_block_time'</span>: <span class="hljs-string">'2018-08-21T09:58:50.500'</span>,</span><br><span class="line">  <span class="hljs-string">'privileged'</span>: <span class="hljs-literal">false</span>,</span><br><span class="line">  <span class="hljs-string">'last_code_update'</span>: <span class="hljs-string">'1970-01-01T00:00:00.000'</span>,</span><br><span class="line">  <span class="hljs-string">'created'</span>: <span class="hljs-string">'2018-08-21T09:58:51.000'</span>,</span><br><span class="line">  <span class="hljs-string">'ram_quota'</span>: -1,</span><br><span class="line">  <span class="hljs-string">'net_weight'</span>: -1,</span><br><span class="line">  <span class="hljs-string">'cpu_weight'</span>: -1,</span><br><span class="line">  <span class="hljs-string">'net_limit'</span>: &#123;</span><br><span class="line">    <span class="hljs-string">'used'</span>: -1,</span><br><span class="line">    <span class="hljs-string">'available'</span>: -1,</span><br><span class="line">    <span class="hljs-string">'max'</span>: -1</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="hljs-string">'cpu_limit'</span>: &#123;</span><br><span class="line">    <span class="hljs-string">'used'</span>: -1,</span><br><span class="line">    <span class="hljs-string">'available'</span>: -1,</span><br><span class="line">    <span class="hljs-string">'max'</span>: -1</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="hljs-string">'ram_usage'</span>: 2724,</span><br><span class="line">  <span class="hljs-string">'permissions'</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="hljs-string">'perm_name'</span>: <span class="hljs-string">'active'</span>,</span><br><span class="line">      <span class="hljs-string">'parent'</span>: <span class="hljs-string">'owner'</span>,</span><br><span class="line">      <span class="hljs-string">'required_auth'</span>: &#123;</span><br><span class="line">        <span class="hljs-string">'threshold'</span>: 1,</span><br><span class="line">        <span class="hljs-string">'keys'</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="hljs-string">'key'</span>: <span class="hljs-string">'FO5dZut9MG9ZdqrT1WYdPkp1Txxi6JLRYEgYCtAUDWH6ymNqdJpR'</span>,</span><br><span class="line">            <span class="hljs-string">'weight'</span>: 1</span><br><span class="line">          &#125;</span><br><span class="line">        ],</span><br><span class="line">        <span class="hljs-string">'accounts'</span>: [],</span><br><span class="line">        <span class="hljs-string">'waits'</span>: []</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="hljs-string">'perm_name'</span>: <span class="hljs-string">'owner'</span>,</span><br><span class="line">      <span class="hljs-string">'parent'</span>: <span class="hljs-string">''</span>,</span><br><span class="line">      <span class="hljs-string">'required_auth'</span>: &#123;</span><br><span class="line">        <span class="hljs-string">'threshold'</span>: 1,</span><br><span class="line">        <span class="hljs-string">'keys'</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="hljs-string">'key'</span>: <span class="hljs-string">'FO5dZut9MG9ZdqrT1WYdPkp1Txxi6JLRYEgYCtAUDWH6ymNqdJpR'</span>,</span><br><span class="line">            <span class="hljs-string">'weight'</span>: 1</span><br><span class="line">          &#125;</span><br><span class="line">        ],</span><br><span class="line">        <span class="hljs-string">'accounts'</span>: [],</span><br><span class="line">        <span class="hljs-string">'waits'</span>: []</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="hljs-string">'total_resources'</span>: null,</span><br><span class="line">  <span class="hljs-string">'self_delegated_bandwidth'</span>: null,</span><br><span class="line">  <span class="hljs-string">'refund_request'</span>: null,</span><br><span class="line">  <span class="hljs-string">'voter_info'</span>: null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>结果中 permissions 字段 owner、active 权限控制者确实是公钥FO5dZut9MG9ZdqrT1WYdPkp1Txxi6JLRYEgYCtAUDWH6ymNqdJpR 的拥有者。</p>
-<h3 id="分析账户与权限"><a href="#分析账户与权限" class="headerlink" title="分析账户与权限"></a>分析账户与权限</h3><p>在新建账户的时候设置owner和active的权限对应的的公私钥值：</p>
-<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fibos.newaccountSync(&#123;</span><br><span class="line">    creator: <span class="hljs-string">'eosio'</span>,</span><br><span class="line">    name: name,</span><br><span class="line">    owner: pubkey,</span><br><span class="line">    active: pubkey</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p><strong>* 以上代码可以看到把 owner、active 权限的控制权限给了公钥 FO5dZut9MG9ZdqrT1WYdPkp1Txxi6JLRYEgYCtAUDWH6ymNqdJpR，也就说此公钥对应的私钥拥有者，有 owner、active 的权限。 *</strong></p>
-<h3 id="配置权限"><a href="#配置权限" class="headerlink" title="配置权限"></a>配置权限</h3><p>更改账户 hellofibos01 的 active 权限。</p>
-<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">var FIBOS = require(<span class="hljs-string">'fibos.js'</span>);</span><br><span class="line"></span><br><span class="line">//账户 hellofibos01 的公私钥对</span><br><span class="line"><span class="hljs-built_in">let</span> pubkey = <span class="hljs-string">'your public key'</span>;</span><br><span class="line"><span class="hljs-built_in">let</span> prikey = <span class="hljs-string">'your private key'</span>;</span><br><span class="line"></span><br><span class="line">//账户 hellofibos02 的公私钥对</span><br><span class="line"><span class="hljs-built_in">let</span> pubkey2 = <span class="hljs-string">'your public key2'</span>;</span><br><span class="line"><span class="hljs-built_in">let</span> prikey2 = <span class="hljs-string">'your private key2'</span>;</span><br><span class="line"></span><br><span class="line">var name = <span class="hljs-string">'hellofibos01'</span>;</span><br><span class="line">var name2 = <span class="hljs-string">'hellofibos02'</span>;</span><br><span class="line"></span><br><span class="line">//创建 hellofibos02 账户</span><br><span class="line"></span><br><span class="line">var fibos = FIBOS(&#123;</span><br><span class="line">  chainId: <span class="hljs-string">'cf057bbfb72640471fd910bcb67639c22df9f92470936cddc1ade0e2f2e7dc4f'</span>,</span><br><span class="line">  keyProvider: <span class="hljs-string">'your keyProvider'</span>,</span><br><span class="line">  httpEndpoint: <span class="hljs-string">'http://127.0.0.1:8888'</span>,</span><br><span class="line">  logger: &#123;</span><br><span class="line">    <span class="hljs-built_in">log</span>: null,</span><br><span class="line">    error: null</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">fibos.newaccountSync(&#123;</span><br><span class="line">  creator: <span class="hljs-string">'eosio'</span>,</span><br><span class="line">  name: name2,</span><br><span class="line">  owner: pubkey2,</span><br><span class="line">  active: pubkey2</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//修改hellofibos01 的active权限,客户端 需要更改为 hellofibos01 的私钥</span><br><span class="line">fibos = FIBOS(&#123;</span><br><span class="line">  chainId: <span class="hljs-string">'cf057bbfb72640471fd910bcb67639c22df9f92470936cddc1ade0e2f2e7dc4f'</span>,</span><br><span class="line">  keyProvider: <span class="hljs-string">'your private key'</span>,</span><br><span class="line">  httpEndpoint: <span class="hljs-string">'http://127.0.0.1:8888'</span>,</span><br><span class="line">  logger: &#123;</span><br><span class="line">    <span class="hljs-built_in">log</span>: null,</span><br><span class="line">    error: null</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">let</span> ctx = fibos.contractSync(<span class="hljs-string">'eosio'</span>);</span><br><span class="line">ctx.updateauthSync(&#123;</span><br><span class="line">  account: name,</span><br><span class="line">  permission: <span class="hljs-string">'active'</span>,</span><br><span class="line">  parent: <span class="hljs-string">'owner'</span>,</span><br><span class="line">  auth: &#123;</span><br><span class="line">    threshold: 1,</span><br><span class="line">    keys: [&#123;</span><br><span class="line">      key: <span class="hljs-string">'FO5UFAzxUsbjQCijL5LtS6TaTtkJgPJACZ8qwDpXyLaW3sE9Ed2D'</span>,</span><br><span class="line">      weight: 1</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">var c = fibos.getAccountSync(name);</span><br><span class="line">console.notice(c);</span><br></pre></td></tr></table></figure>
-<p>输出结果如下：</p>
-<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="hljs-string">'account_name'</span>: <span class="hljs-string">'hellofibos01'</span>,</span><br><span class="line">  <span class="hljs-string">'head_block_num'</span>: 66,</span><br><span class="line">  <span class="hljs-string">'head_block_time'</span>: <span class="hljs-string">'2018-08-21T09:59:18.500'</span>,</span><br><span class="line">  <span class="hljs-string">'privileged'</span>: <span class="hljs-literal">false</span>,</span><br><span class="line">  <span class="hljs-string">'last_code_update'</span>: <span class="hljs-string">'1970-01-01T00:00:00.000'</span>,</span><br><span class="line">  <span class="hljs-string">'created'</span>: <span class="hljs-string">'2018-08-21T09:58:51.000'</span>,</span><br><span class="line">  <span class="hljs-string">'ram_quota'</span>: -1,</span><br><span class="line">  <span class="hljs-string">'net_weight'</span>: -1,</span><br><span class="line">  <span class="hljs-string">'cpu_weight'</span>: -1,</span><br><span class="line">  <span class="hljs-string">'net_limit'</span>: &#123;</span><br><span class="line">    <span class="hljs-string">'used'</span>: -1,</span><br><span class="line">    <span class="hljs-string">'available'</span>: -1,</span><br><span class="line">    <span class="hljs-string">'max'</span>: -1</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="hljs-string">'cpu_limit'</span>: &#123;</span><br><span class="line">    <span class="hljs-string">'used'</span>: -1,</span><br><span class="line">    <span class="hljs-string">'available'</span>: -1,</span><br><span class="line">    <span class="hljs-string">'max'</span>: -1</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="hljs-string">'ram_usage'</span>: 2724,</span><br><span class="line">  <span class="hljs-string">'permissions'</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="hljs-string">'perm_name'</span>: <span class="hljs-string">'active'</span>,</span><br><span class="line">      <span class="hljs-string">'parent'</span>: <span class="hljs-string">'owner'</span>,</span><br><span class="line">      <span class="hljs-string">'required_auth'</span>: &#123;</span><br><span class="line">        <span class="hljs-string">'threshold'</span>: 1,</span><br><span class="line">        <span class="hljs-string">'keys'</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="hljs-string">'key'</span>: <span class="hljs-string">'FO5UFAzxUsbjQCijL5LtS6TaTtkJgPJACZ8qwDpXyLaW3sE9Ed2D'</span>,</span><br><span class="line">            <span class="hljs-string">'weight'</span>: 1</span><br><span class="line">          &#125;</span><br><span class="line">        ],</span><br><span class="line">        <span class="hljs-string">'accounts'</span>: [],</span><br><span class="line">        <span class="hljs-string">'waits'</span>: []</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="hljs-string">'perm_name'</span>: <span class="hljs-string">'owner'</span>,</span><br><span class="line">      <span class="hljs-string">'parent'</span>: <span class="hljs-string">''</span>,</span><br><span class="line">      <span class="hljs-string">'required_auth'</span>: &#123;</span><br><span class="line">        <span class="hljs-string">'threshold'</span>: 1,</span><br><span class="line">        <span class="hljs-string">'keys'</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="hljs-string">'key'</span>: <span class="hljs-string">'FO5dZut9MG9ZdqrT1WYdPkp1Txxi6JLRYEgYCtAUDWH6ymNqdJpR'</span>,</span><br><span class="line">            <span class="hljs-string">'weight'</span>: 1</span><br><span class="line">          &#125;</span><br><span class="line">        ],</span><br><span class="line">        <span class="hljs-string">'accounts'</span>: [],</span><br><span class="line">        <span class="hljs-string">'waits'</span>: []</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="hljs-string">'total_resources'</span>: null,</span><br><span class="line">  <span class="hljs-string">'self_delegated_bandwidth'</span>: null,</span><br><span class="line">  <span class="hljs-string">'refund_request'</span>: null,</span><br><span class="line">  <span class="hljs-string">'voter_info'</span>: null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上代码新建了账户 hellofibos02，并且调用 updateauthSync 方法，进行权限变更操作。我们把 hellofibos01 的 active 权限转移给了公钥 FO5UFAzxUsbjQCijL5LtS6TaTtkJgPJACZ8qwDpXyLaW3sE9Ed2D。</p>
-<h3 id="多签"><a href="#多签" class="headerlink" title="多签"></a>多签</h3><h4 id="签名-多签及阀值"><a href="#签名-多签及阀值" class="headerlink" title="签名,多签及阀值"></a>签名,多签及阀值</h4><p>我们在使用区块链进行授权操作时, 都是通过私钥进行签名的，通过确认签名来确认授权许可，多签则是将一个权限分给多个账户，设置一个阀值，每个参与的账户都有权重，当最后的权重大于等于该阀值的时候，授权通过</p>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>单签</p>
-<table>
-<thead>
-<tr>
-<th>权限</th>
-<th>所属公钥</th>
-<th>权重</th>
-<th>阀值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>owner</td>
-<td></td>
-<td></td>
-<td>1</td>
-</tr>
-<tr>
-<td></td>
-<td>FO5dZut9MG9ZdqrT1WYdPkp1Txxi6JLRYEgYCtAUDWH6ymNqdJpR</td>
-<td>1</td>
-<td>-</td>
-</tr>
-<tr>
-<td>active</td>
-<td></td>
-<td></td>
-<td>1</td>
-</tr>
-<tr>
-<td></td>
-<td>FO5dZut9MG9ZdqrT1WYdPkp1Txxi6JLRYEgYCtAUDWH6ymNqdJpR</td>
-<td>1</td>
-<td>-</td>
-</tr>
-</tbody></table>
-<p>如表所示，如果要获得 owner 权限授权，拥有者的权重必须大于等于 owner 所对应的阈值，上面的示例 owner 的阈值是1，而所属公钥 FO6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV 的权重是1，所以这个所属公钥就可以直接获取 owner 进行操作。</p>
-<p>多签</p>
-<table>
-<thead>
-<tr>
-<th>权限</th>
-<th>所属公钥</th>
-<th>权重</th>
-<th>阀值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>owner</td>
-<td></td>
-<td></td>
-<td>2</td>
-</tr>
-<tr>
-<td></td>
-<td>FO5dZut9MG9ZdqrT1WYdPkp1Txxi6JLRYEgYCtAUDWH6ymNqdJpR</td>
-<td>1</td>
-<td>-</td>
-</tr>
-<tr>
-<td></td>
-<td>FO5UFAzxUsbjQCijL5LtS6TaTtkJgPJACZ8qwDpXyLaW3sE9Ed2D</td>
-<td>1</td>
-<td>-</td>
-</tr>
-<tr>
-<td>active</td>
-<td></td>
-<td></td>
-<td>1</td>
-</tr>
-<tr>
-<td></td>
-<td>FO5dZut9MG9ZdqrT1WYdPkp1Txxi6JLRYEgYCtAUDWH6ymNqdJpR</td>
-<td>1</td>
-<td>-</td>
-</tr>
-</tbody></table>
-<p>如表所示，要想获得 owner 权限，必须2个所属公钥同时授权才可以获得。</p>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/10/31/SystemPermisson/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-10-29T06:57:26.366Z">2019-10-29</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/fibos/">fibos</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 565 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/10/29/fibos-SystemContract/">SystemContract</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="newaccount"><a href="#newaccount" class="headerlink" title="newaccount"></a>newaccount</h2><hr>
+<p>创建合约账户</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/10/29/fibos-SystemContract/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-10-29T01:55:47.782Z">2019-10-29</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/fibos/">fibos</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 295 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/10/29/Hello-fibjs/">Installing Fibos</a>
+            
+        </h1>
+        <div class="content">
+            <p>Welcome to <a href="http://d3j.io/" target="_blank" rel="noopener">d3j</a>! This is your very first post. Check <a href="https://dev.fo/zh-cn/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using fibos, you can find the answer in <a href="https://dev.fo/zh-cn/guide/installation.html" target="_blank" rel="noopener">troubleshooting</a></p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>FIBOS 支持常用的 UNIX 操作系统，比如 Mac OSX，Linux 和 FreeBSD。</p>
+<p>建议在终端直接使用下面的命令快速安装：<br>稳定版</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -s https://fibos.io/download/installer.sh | sh</span><br></pre></td></tr></table></figure>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/10/29/Hello-fibjs/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
@@ -299,7 +321,7 @@
                 <div>
                     
                     <figure class="image is-128x128 has-mb-6">
-                        <img class="" src="/images/deemo.png" alt="YvYi">
+                        <img class="" src="/images/deemo.jpg" alt="YvYi">
                     </figure>
                     
                     <p class="is-size-4 is-block">
@@ -441,7 +463,7 @@
                 <span class="level-item">fibos</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">3</span>
             </span>
         </a></li>
             </ul>
@@ -459,7 +481,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/hello/" style="font-size: 10px;">-hello</a> <a href="/tags/d3j/" style="font-size: 10px;">d3j</a>
+        <a href="/tags/hello/" style="font-size: 10px;">-hello</a> <a href="/tags/d3j/" style="font-size: 20px;">d3j</a>
     </div>
 </div>
     
@@ -504,7 +526,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-29T06:57:26.366Z">2019-10-29</time></div>
                     <a href="/2019/10/29/fibos-SystemContract/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SystemContract</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/fibos/">fibos</a>
                     </p>
                 </div>
             </div>
@@ -514,16 +536,16 @@
             
             <a href="/2019/10/29/Hello-fibjs/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello d3j">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Installing Fibos">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-29T01:55:47.782Z">2019-10-29</time></div>
-                    <a href="/2019/10/29/Hello-fibjs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello d3j</a>
+                    <a href="/2019/10/29/Hello-fibjs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Installing Fibos</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/fibos/">fibos</a>
                     </p>
                 </div>
             </div>
@@ -593,7 +615,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/d3j/">
                         <span class="tag">d3j</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -658,7 +680,7 @@
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-29T06:57:26.366Z">2019-10-29</time></div>
                     <a href="/2019/10/29/fibos-SystemContract/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SystemContract</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/fibos/">fibos</a>
                     </p>
                 </div>
             </div>
@@ -668,16 +690,16 @@
             
             <a href="/2019/10/29/Hello-fibjs/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Hello d3j">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Installing Fibos">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-29T01:55:47.782Z">2019-10-29</time></div>
-                    <a href="/2019/10/29/Hello-fibjs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Hello d3j</a>
+                    <a href="/2019/10/29/Hello-fibjs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Installing Fibos</a>
                     <p class="is-size-7 is-uppercase">
-                        
+                        <a class="has-link-grey -link" href="/categories/fibos/">fibos</a>
                     </p>
                 </div>
             </div>
@@ -747,7 +769,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/d3j/">
                         <span class="tag">d3j</span>
-                        <span class="tag is-grey">1</span>
+                        <span class="tag is-grey">3</span>
                     </a>
                 </div>
                 
@@ -775,7 +797,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/deemo.png" alt="YvYi&#39;s Blog" height="28">
+                    <img src="/images/deemo.jpg" alt="YvYi&#39;s Blog" height="28">
                 
                 </a>
                 <p class="is-size-7">
