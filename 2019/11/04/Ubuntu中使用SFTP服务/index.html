@@ -20,7 +20,7 @@
 <meta property="og:description" content="SFTP介绍sftp是Secure File Transfer Protocol的缩写，安全文件传送协议。可以为传输文件提供一种安全的网络的加密方法。sftp 与 ftp 有着几乎一样的语法和功能。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-11-05T06:23:33.189Z">
+<meta property="og:updated_time" content="2019-11-05T08:54:00.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;og_image.png">
 
@@ -149,7 +149,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1358 个字)
+                    10 分钟 读完 (大约 1533 个字)
                 </span>
                 
                 
@@ -174,39 +174,53 @@
 <figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/*release</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/images/pasted-0.png" alt="upload successful"></p>
+<p><img src="/images/pasted-0.png" alt="产看系统"></p>
 <h4 id="查看是否安装了SFTP"><a href="#查看是否安装了SFTP" class="headerlink" title="查看是否安装了SFTP"></a>查看是否安装了SFTP</h4><p>在Linux系统中，一般RedHat系统默认已经安装了openssh-client和openssh-server，即默认已经集成了sftp服务，不需要重新安装；而Ubuntu系统默认只安装了openssh-client，要用sftp的话还需要安装openssh-server。如系统已安装有openssh-client，为了防止安装openssh-server时两者版本不兼容，可以先把openssh-client卸载后再安装。查看本系统是否已安装sftp，执行如下命令：</p>
 <figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dpkg --get-selections | grep ssh</span><br></pre></td></tr></table></figure>
 <p>若未安装：</p>
-<p><img src="/images/pasted-1.png" alt="upload successful"></p>
+<p><img src="/images/pasted-1.png" alt="未安装"></p>
 <p>执行下文安装操作</p>
 <h4 id="安装openssh-client"><a href="#安装openssh-client" class="headerlink" title="安装openssh-client"></a>安装openssh-client</h4><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install openssh-client</span><br></pre></td></tr></table></figure>
 <p>安装完成后执行之前的命令查看：</p>
-<p><img src="/images/pasted-2.png" alt="upload successful"></p>
+<p><img src="/images/pasted-2.png" alt="安装成功"></p>
 <h4 id="安装openssh-server"><a href="#安装openssh-server" class="headerlink" title="安装openssh-server"></a>安装openssh-server</h4><p>执行命令:</p>
 <figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure>
 <p>查看是否成功：</p>
-<p><img src="/images/pasted-3.png" alt="upload successful"></p>
-<h3 id="权限配置"><a href="#权限配置" class="headerlink" title="权限配置"></a>权限配置</h3><h4 id="创建sftp-users用户组，并新建用户sftp"><a href="#创建sftp-users用户组，并新建用户sftp" class="headerlink" title="创建sftp-users用户组，并新建用户sftp"></a>创建sftp-users用户组，并新建用户sftp</h4><p>创建sftp用户组，便于权限管理。并创建sftp用户</p>
-<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ sudo addgroup sftp-users</span><br><span class="line">Adding group <span class="hljs-string">'sftp-users'</span> (GID 1001)...</span><br><span class="line">Done.</span><br><span class="line">$ sudo adduser sftp</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><img src="/images/pasted-3.png" alt="安装成功"></p>
+<h3 id="权限配置"><a href="#权限配置" class="headerlink" title="权限配置"></a>权限配置</h3><h4 id="创建sftp-users用户组，并新建用户sftp"><a href="#创建sftp-users用户组，并新建用户sftp" class="headerlink" title="创建sftp-users用户组，并新建用户sftp"></a>创建sftp-users用户组，并新建用户sftp</h4><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ sudo addgroup sftp-users</span><br><span class="line">Adding group <span class="hljs-string">'sftp-users'</span> (GID 1001)...</span><br><span class="line">Done.</span><br><span class="line">$ sudo adduser sftp</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
 <h4 id="给sftp赋权并新建用户组ssh-users"><a href="#给sftp赋权并新建用户组ssh-users" class="headerlink" title="给sftp赋权并新建用户组ssh-users"></a>给sftp赋权并新建用户组ssh-users</h4><p>将sftp从所有其他用户组中移除并加入到sftp-users组，并且关闭其Shell访问：</p>
 <figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo usermod -G sftp-users -s /bin/<span class="hljs-literal">false</span> sftp</span><br></pre></td></tr></table></figure>
 <p>创建SSH用户组，并把管理员加入到该组（注意usermod中的-a参数的意思是不从其他用户组用移除）。</p>
 <figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo addgroup ssh-users</span><br><span class="line">$ sudo usermod -a -G ssh-users bbc2005</span><br></pre></td></tr></table></figure>
 
-<p><img src="/images/pasted-4.png" alt="upload successful"></p>
+<p><img src="/images/pasted-4.png" alt="示例"></p>
 <h4 id="创建并设置sftp用户目录"><a href="#创建并设置sftp用户目录" class="headerlink" title="创建并设置sftp用户目录"></a>创建并设置sftp用户目录</h4><p>准备“监狱”的根目录及共享目录，“监狱”的根目录必须满足以下要求：所有者为root，其他任何用户都不能拥有写入权限。因此，为了让sftp用户能够上传文件，还必须在“监狱”根目录下再创建一个普通用户能够写入的共享文件目录。为了便于管理员通过sftp管理上传的文件，把这个共享文件目录配置为：由bbc2005所有，允许sftp-users读写。这样，管理员和sftp用户组成员就都能读写这个目录了。</p>
 <figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mkdir /home/sftp_root</span><br><span class="line">$ sudo mkdir /home/sftp_root/shared</span><br><span class="line">$ sudo chown bbc2005:sftp-users /home/sftp_root/shared</span><br><span class="line">$ sudo chmod 770 /home/sftp_root/shared</span><br></pre></td></tr></table></figure>
 
-<p><img src="/images/pasted-5.png" alt="upload successful"></p>
+<p><img src="/images/pasted-5.png" alt="创建目录"></p>
 <h4 id="修改SSH配置文件"><a href="#修改SSH配置文件" class="headerlink" title="修改SSH配置文件"></a>修改SSH配置文件</h4><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi  /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
 <p>在sshd_config文件的最后，添加以下内容：</p>
 <figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">AllowGroups ssh-users sftp-users</span><br><span class="line">Match Group sftp-users</span><br><span class="line">ChrootDirectory /home/sftp_root</span><br><span class="line">AllowTcpForwarding no</span><br><span class="line">X11Forwarding no</span><br><span class="line">ForceCommand internal-sftp</span><br></pre></td></tr></table></figure>
 <p>这些内容的意思是：<br>只允许ssh-uers及sftp-users通过SSH访问系统；<br>针对sftp-users用户，额外增加一些设置：<br>将“/home/sftp_root”设置为该组用户的系统根目录（因此它们将不能访问该目录之外的其他系统文件）；<br>禁止TCP Forwarding和X11 Forwarding；强制该组用户仅仅使用SFTP。<br>如果需要进一步了解细节，可以使用“man sshd_config”命令。这样设置之后，SSH用户组可以访问SSH，并且不受其他限制；而SFTP用户组仅能使用SFTP进行访问，而且被关进监狱目录。</p>
-<p><img src="/images/pasted-6.png" alt="upload successful"></p>
+<p><img src="/images/pasted-6.png" alt="配置"></p>
 <h3 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h3><p>重启服务，完成配置：</p>
 <figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service ssh restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="sftp-连接"><a href="#sftp-连接" class="headerlink" title="sftp 连接"></a>sftp 连接</h4><p>键入以下命令，输入密码即可</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sftp youruser@ip</span><br></pre></td></tr></table></figure>
+<h4 id="sftp下载及上传"><a href="#sftp下载及上传" class="headerlink" title="sftp下载及上传"></a>sftp下载及上传</h4><p>从120.110.7.119服务器的 /etc/supervisor 目录下的 file.conf 文件下载到 本地服务器的 /etc/supervisord.d 目录下</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sftp&gt; get /etc/supervisor/file.conf   /etc/supervisord.d</span><br></pre></td></tr></table></figure>
+<p>加上 -r 标记，表示从远程服务器的 /home/data 文件夹下载到本地服务器的 /home/my 目录下。</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sftp&gt; get -r /home/data   /home/my</span><br></pre></td></tr></table></figure>
+
+<p>将本地的Linuxgl.pdf 文件上传到 远程的 /var/www/fuyatao 目录下</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ put /home/fuyatao/downloads/Linuxgl.pdf /var/www/fuyatao/</span><br></pre></td></tr></table></figure>
+
+<p>将本地的 fuyatao 文件夹上传到 远程的 /var/www/fuyatao 目录下</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ put /home/fuyatao   /var/www/fuyatao/</span><br></pre></td></tr></table></figure>
+<p>更多用法可输入help查看或百度</p>
+
         </div>
         
         <div class="level is-size-7 is-uppercase">
