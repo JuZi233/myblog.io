@@ -139,6 +139,132 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-26T07:15:16.000Z">2019-11-26</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 645 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/26/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E9%9C%80%E6%B1%82/">深度共享需求</a>
+            
+        </h1>
+        <div class="content">
+            <h5 id="2019-11-25日"><a href="#2019-11-25日" class="headerlink" title="2019-11-25日"></a>2019-11-25日</h5><p><img src="/images/pasted-11.png" alt="清单"></p>
+<!-- readmore -->
+
+<h6 id="卖单校验："><a href="#卖单校验：" class="headerlink" title="卖单校验："></a>卖单校验：</h6><p>问题：卖单时未对交易结果进行校验，卖出失败流程依然继续买入操作，导致亏损<br>解决方案：<br>1：globalTrade方法添加返回值，交易成功设true，失败为false,dex交易所根据交易前余额，其余根据返回码判断。    </p>
+<p>实现：</p>
+<figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-built_in">let</span> r = aex.submitOrder(cny, <span class="hljs-built_in">type</span>, amout, _price, fo);</span><br><span class="line">			<span class="hljs-keyword">if</span>(r.code &amp;&amp; r.code!=220010)</span><br><span class="line">				bol = <span class="hljs-literal">false</span>;</span><br><span class="line">......</span><br><span class="line">......</span><br><span class="line">var before = utils.getBalance(dex,<span class="hljs-string">"dex"</span>);</span><br><span class="line">			dex.submitOrder(direct, amout, price);</span><br><span class="line">			var after = utils.getBalance(dex,<span class="hljs-string">"dex"</span>);</span><br><span class="line">			try &#123;</span><br><span class="line">				<span class="hljs-keyword">if</span>(direct == <span class="hljs-string">" "</span>)&#123;</span><br><span class="line">					<span class="hljs-keyword">if</span>(!(bigNumber[<span class="hljs-string">"&lt;"</span>](before.fo,after.fo)&amp;&amp;bigNumber[<span class="hljs-string">"&gt;"</span>](before.usdt,after.usdt))) // 买单failed</span><br><span class="line">						bol = <span class="hljs-literal">false</span>;</span><br><span class="line">				&#125;<span class="hljs-keyword">else</span>&#123;</span><br><span class="line">				<span class="hljs-keyword">if</span>(!(bigNumber[<span class="hljs-string">"&gt;"</span>](before.fo,after.fo)&amp;&amp;bigNumber[<span class="hljs-string">"&lt;"</span>](before.usdt,after.usdt))) // 卖单failed</span><br><span class="line">					bol = <span class="hljs-literal">false</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; catch (error) &#123;</span><br><span class="line">				console.warn(<span class="hljs-string">"get balance error"</span>, e);</span><br><span class="line">				bol = <span class="hljs-literal">false</span>;</span><br><span class="line">			&#125;</span><br></pre></td></tr></table></figure>
+<p>2：补单代码中，循环卖出时判断若有一次交易失败，结束流程等待下一轮</p>
+<h6 id="根据成交单刷新流程："><a href="#根据成交单刷新流程：" class="headerlink" title="根据成交单刷新流程："></a>根据成交单刷新流程：</h6><p>问题：目前整个流程周期为10秒，在这个过程中，交易所可能发生其他交易导致我们流程的数据会不可靠，如果把10秒时间调短则高频布单对交易所api效果很差</p>
+<p>解决方案：通过一个快速（比如2秒周期）订单查询服务判断有单成交时（通过判断2秒前的成交订单和本次轮训的成交订单记录是否一致），直接刷新目前流程，重新计时开始布单撤单。任一交易所有成交订单都会刷新</p>
+<p>可能遇到的问题：</p>
+<p>1：当查询事件查询到已成交订单时，当前testdepth流程正在执行（比如正在买卖单），是否要等待正在进行的流程执行完。<br>answer：设置全局flag=true，交易开始置为false，结束置true，查询定时器中根据flag判断是否重启原进程</p>
+<p>2：如何判断上一轮的成交订单和这本次查询结果不一致，取多少条成交订单进行判断，判断交易ID？<br>answer：有些交易所的交易ID不是规则的，因此用交易时间来判断，取10条记录即可</p>
+<p>步骤：<br>1：2秒一次抓取各交易所成交数据存入数据库中，字段如下：</p>
+<table>
+<thead>
+<tr>
+<th>k</th>
+<th>datetime</th>
+<th>v</th>
+<th>status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>aex</td>
+<td>2019-08-07 16:10:30</td>
+<td>[…]</td>
+<td>—</td>
+</tr>
+<tr>
+<td>cointiger</td>
+<td>2019-08-07 16:10:30</td>
+<td>[…]</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p>2：对前后两次交易进行比较（时间戳），若有新成交的订单则重启撤布单流程，否则继续。<br>zg,dex交易所不参与。</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-11-18T06:54:00.000Z">2019-11-18</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    2 分钟 读完 (大约 331 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/">深度共享</a>
+            
+        </h1>
+        <div class="content">
+            <h4 id="产品定义"><a href="#产品定义" class="headerlink" title="产品定义"></a>产品定义</h4><p>共享前深度：各交易所真实的盘口数据<br>目标深度：期望达到的最小预期深度<br>共享后深度：实际真实布单后的深度，称之为共享后深度</p>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-11-05T06:45:00.000Z">2019-11-05</time>
                 
                 <div class="level-item">
@@ -495,7 +621,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        6
+                        8
                     </p>
                 </div>
             </div>
@@ -650,6 +776,44 @@
         
         <article class="media">
             
+            <a href="/2019/11/26/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E9%9C%80%E6%B1%82/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="深度共享需求">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-26T07:15:16.000Z">2019-11-26</time></div>
+                    <a href="/2019/11/26/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E9%9C%80%E6%B1%82/" class="title has-link-black-ter is-size-6 has-text-weight-normal">深度共享需求</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="深度共享">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-18T06:54:00.000Z">2019-11-18</time></div>
+                    <a href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">深度共享</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/11/05/Ubuntu%E4%B8%AD%E4%BD%BF%E7%94%A8FTP%E6%9C%8D%E5%8A%A1/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Ubuntu中使用FTP服务">
@@ -705,44 +869,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/10/29/fibos-SystemContract/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SystemContract">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-29T06:57:26.366Z">2019-10-29</time></div>
-                    <a href="/2019/10/29/fibos-SystemContract/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SystemContract</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/fibos/">fibos</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/10/29/Hello-fibjs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Installing Fibos">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-29T01:55:47.782Z">2019-10-29</time></div>
-                    <a href="/2019/10/29/Hello-fibjs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Installing Fibos</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/fibos/">fibos</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -760,7 +886,7 @@
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -799,7 +925,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/d3j/">
                         <span class="tag">d3j</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
@@ -841,6 +967,44 @@
         
         <article class="media">
             
+            <a href="/2019/11/26/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E9%9C%80%E6%B1%82/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="深度共享需求">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-26T07:15:16.000Z">2019-11-26</time></div>
+                    <a href="/2019/11/26/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E9%9C%80%E6%B1%82/" class="title has-link-black-ter is-size-6 has-text-weight-normal">深度共享需求</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="深度共享">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-18T06:54:00.000Z">2019-11-18</time></div>
+                    <a href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">深度共享</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/11/05/Ubuntu%E4%B8%AD%E4%BD%BF%E7%94%A8FTP%E6%9C%8D%E5%8A%A1/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="Ubuntu中使用FTP服务">
@@ -896,44 +1060,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/10/29/fibos-SystemContract/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="SystemContract">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-29T06:57:26.366Z">2019-10-29</time></div>
-                    <a href="/2019/10/29/fibos-SystemContract/" class="title has-link-black-ter is-size-6 has-text-weight-normal">SystemContract</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/fibos/">fibos</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/10/29/Hello-fibjs/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Installing Fibos">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-10-29T01:55:47.782Z">2019-10-29</time></div>
-                    <a href="/2019/10/29/Hello-fibjs/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Installing Fibos</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/fibos/">fibos</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -951,7 +1077,7 @@
                     <span class="level-item">十一月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">4</span>
                 </span>
             </a>
         </li>
@@ -990,7 +1116,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/d3j/">
                         <span class="tag">d3j</span>
-                        <span class="tag is-grey">3</span>
+                        <span class="tag is-grey">4</span>
                     </a>
                 </div>
                 
