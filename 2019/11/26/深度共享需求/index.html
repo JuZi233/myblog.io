@@ -11,16 +11,16 @@
 <title>深度共享需求 - YvYi&#39;s Blog</title>
 
 
-    <meta name="description" content="2019-11-25日   卖单校验：问题：卖单时未对交易结果进行校验，卖出失败流程依然继续买入操作，导致亏损解决方案：1：globalTrade方法添加返回值，交易成功设true，失败为false,dex交易所根据交易前余额，其余根据返回码判断。     实现： 1234567891011121314151617181920let r = aex.submitOrder(cny, type, a">
+    <meta name="description" content="2019-11-25日">
 <meta name="keywords" content="life code games">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深度共享需求">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;26&#x2F;%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E9%9C%80%E6%B1%82&#x2F;index.html">
 <meta property="og:site_name" content="YvYi&#39;s Blog">
-<meta property="og:description" content="2019-11-25日   卖单校验：问题：卖单时未对交易结果进行校验，卖出失败流程依然继续买入操作，导致亏损解决方案：1：globalTrade方法添加返回值，交易成功设true，失败为false,dex交易所根据交易前余额，其余根据返回码判断。     实现： 1234567891011121314151617181920let r = aex.submitOrder(cny, type, a">
+<meta property="og:description" content="2019-11-25日">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-11-27T08:42:49.261Z">
+<meta property="og:updated_time" content="2019-11-27T08:44:17.861Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;og_image.png">
 
@@ -164,7 +164,7 @@
         </h1>
         <div class="content">
             <h5 id="2019-11-25日"><a href="#2019-11-25日" class="headerlink" title="2019-11-25日"></a>2019-11-25日</h5><p><img src="/images/pasted-11.png" alt="清单"></p>
-<!-- readmore -->
+<a id="more"></a>
 
 <h6 id="卖单校验："><a href="#卖单校验：" class="headerlink" title="卖单校验："></a>卖单校验：</h6><p>问题：卖单时未对交易结果进行校验，卖出失败流程依然继续买入操作，导致亏损<br>解决方案：<br>1：globalTrade方法添加返回值，交易成功设true，失败为false,dex交易所根据交易前余额，其余根据返回码判断。    </p>
 <p>实现：</p>
