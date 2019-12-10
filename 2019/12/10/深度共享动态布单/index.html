@@ -8,19 +8,19 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>SystemContract - YvYi&#39;s Blog</title>
+<title>深度共享动态布单 - YvYi&#39;s Blog</title>
 
 
-    <meta name="description" content="newaccount 创建合约账户">
-<meta name="keywords" content="d3j">
+    <meta name="description" content="动态布单实现方案原方案（非动态）：1: 流程开始，批量全部撤单2: 风控检测，获取用户盘口，计算深度数据3: 根据深度数据计算交叉比率，根据交叉比率判断是否进行交叉消除，若交叉消除则不走补，布单，直接转至step5，否则下一步4: 补单 =》 布单5: 随机判断是否执行跑量脚本6: END">
+<meta name="keywords" content="life code games">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SystemContract">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;29&#x2F;fibos-SystemContract&#x2F;index.html">
+<meta property="og:title" content="深度共享动态布单">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;10&#x2F;%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E5%8A%A8%E6%80%81%E5%B8%83%E5%8D%95&#x2F;index.html">
 <meta property="og:site_name" content="YvYi&#39;s Blog">
-<meta property="og:description" content="newaccount 创建合约账户">
+<meta property="og:description" content="动态布单实现方案原方案（非动态）：1: 流程开始，批量全部撤单2: 风控检测，获取用户盘口，计算深度数据3: 根据深度数据计算交叉比率，根据交叉比率判断是否进行交叉消除，若交叉消除则不走补，布单，直接转至step5，否则下一步4: 补单 =》 布单5: 随机判断是否执行跑量脚本6: END">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-10-31T09:08:15.652Z">
+<meta property="og:updated_time" content="2019-12-10T02:31:42.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;og_image.png">
 
@@ -80,7 +80,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/deemo.jpg" alt="SystemContract" height="28">
+                <img src="/images/deemo.jpg" alt="深度共享动态布单" height="28">
             
             </a>
         </div>
@@ -139,17 +139,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-10-29T06:57:26.366Z">2019-10-29</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/fibos/">fibos</a>
-                </div>
+                <time class="level-item has-text-grey" datetime="2019-12-10T01:03:21.000Z">2019-12-10</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 565 个字)
+                    3 分钟 读完 (大约 482 个字)
                 </span>
                 
                 
@@ -163,137 +159,20 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                SystemContract
+                深度共享动态布单
             
         </h1>
         <div class="content">
-            <h2 id="newaccount"><a href="#newaccount" class="headerlink" title="newaccount"></a>newaccount</h2><hr>
-<p>创建合约账户</p>
+            <h3 id="动态布单实现方案"><a href="#动态布单实现方案" class="headerlink" title="动态布单实现方案"></a>动态布单实现方案</h3><p>原方案（非动态）：<br>1: 流程开始，批量全部撤单<br>2: 风控检测，获取用户盘口，计算深度数据<br>3: 根据深度数据计算交叉比率，根据交叉比率判断是否进行交叉消除，若交叉消除则不走补，布单，直接转至step5，否则下一步<br>4: 补单 =》 布单<br>5: 随机判断是否执行跑量脚本<br>6: END</p>
 <a id="more"></a>
 
-<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><table>
-<thead>
-<tr>
-<th>name</th>
-<th>type</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>creator</td>
-<td>string</td>
-<td>创建者的账户名</td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>被创建者的账户名</td>
-</tr>
-<tr>
-<td>owner</td>
-<td>string</td>
-<td>被创建者账户 owner 权限公钥</td>
-</tr>
-<tr>
-<td>active</td>
-<td>string</td>
-<td>被创建者 active 权限公钥</td>
-</tr>
-</tbody></table>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const FIBOS = require(<span class="hljs-string">'fibos.js'</span>);</span><br><span class="line"></span><br><span class="line">const fibos_client = FIBOS(&#123;</span><br><span class="line">  // fibos 测试网 chainId</span><br><span class="line">  chainId: <span class="hljs-string">'68cee14f598d88d340b50940b6ddfba28c444b46cd5f33201ace82c78896793a'</span>,</span><br><span class="line">  keyProvider: <span class="hljs-string">'PRIVATE_KEY'</span>, // 你的私钥</span><br><span class="line">  httpEndpoint: <span class="hljs-string">'http://api.testnet.fo'</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">let</span> ctx = fibos_client.contractSync(<span class="hljs-string">'eosio'</span>);</span><br><span class="line"></span><br><span class="line">var r = ctx.newaccountSync(&#123;</span><br><span class="line">    creator:<span class="hljs-string">'eosio'</span>,</span><br><span class="line">    name:<span class="hljs-string">'NEW_ACCOUNT_NAME'</span>,</span><br><span class="line">    owner:<span class="hljs-string">'PUBLIC_KEY_FOR_OWNER_PERMISSION'</span>,</span><br><span class="line">    active:<span class="hljs-string">'PUBLIC_KEY_FOR_ACTIVE_PERMISSION'</span></span><br><span class="line">&#125;,&#123;</span><br><span class="line">    authorization: <span class="hljs-string">'ACCOUNT_FOR_PRIVATE_KEY'</span> // 私钥对应的账号</span><br><span class="line">&#125;);</span><br><span class="line">console.log(r);</span><br></pre></td></tr></table></figure>
+<p>目标效果：<br>解决原方案中同时出现大量的撤单，布单现象，实现随机撤，布单</p>
+<p>目标方案：<br>1: 流程开始不撤单，取所有挂单集合A<br>2: 进行风控检测，获取用户盘口，根据第一步取到的挂单在用户盘口中排除部分深度数据，得到总盘口ex<br>3: 根据总盘口ex计算深度数据，并根据深度数据计算交叉比率判断是否进行交叉消除，若交叉消除则将交叉单数组C与挂单集合A随机组合进行撤布单,转至step5；不交叉消除则执行step4<br>4: 不交叉消除，进行补单操作，再根据深度数据计算需要布单的数组B，将A，B两个数组随机合并，进行撤，布单。<br>5: 随机判断是否执行跑量脚本<br>6: END</p>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>1: 如何剔除初始盘口中的已挂单深度数据，判断条件是什么<br>    比如AEX交易所中已挂单返回结果是：</p>
+<p><img src="/images/pasted-16.png" alt="已挂单接数据"><br>是否根据一个 { price，amount，type }来确定筛除一个bid或者一个ask。</p>
+<p><img src="/images/pasted-17.png" alt="深度数据"></p>
+<p>2: 原流程中撤单有失败流程直接结束，动态布单中若撤单失败，是结束流程还继续布单</p>
 
-<h2 id="buyrambytes"><a href="#buyrambytes" class="headerlink" title="buyrambytes"></a>buyrambytes</h2><hr>
-<p>创建者调用该方法为被创建者购买内存来存放新账户的信息</p>
-<h3 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h3><table>
-<thead>
-<tr>
-<th>name</th>
-<th>type</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>payer</td>
-<td>string</td>
-<td>创建者的账户名</td>
-</tr>
-<tr>
-<td>receiver</td>
-<td>string</td>
-<td>被创建者的账户名</td>
-</tr>
-<tr>
-<td>bytes</td>
-<td>uint32</td>
-<td>购买的内存大小（字节）</td>
-</tr>
-</tbody></table>
-<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const FIBOS = require(<span class="hljs-string">'fibos.js'</span>);</span><br><span class="line"></span><br><span class="line">const fibos_client = FIBOS(&#123;</span><br><span class="line">  // fibos 测试网 chainId</span><br><span class="line">  chainId: <span class="hljs-string">'68cee14f598d88d340b50940b6ddfba28c444b46cd5f33201ace82c78896793a'</span>,</span><br><span class="line">  keyProvider: <span class="hljs-string">'PRIVATE_KEY'</span>, // 你的私钥</span><br><span class="line">  httpEndpoint: <span class="hljs-string">'http://api.testnet.fo'</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">let</span> ctx = fibos_client.contractSync(<span class="hljs-string">'eosio'</span>);</span><br><span class="line"></span><br><span class="line">var r = ctx.buyrambytesSync(&#123;</span><br><span class="line">      payer: <span class="hljs-string">'ACCOUNT_OF_PAYER'</span>,</span><br><span class="line">      receiver: <span class="hljs-string">'ACCOUNT_OF_RECEIVER'</span>,</span><br><span class="line">      bytes: 4096</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    authorization: <span class="hljs-string">'ACCOUNT_FOR_PRIVATE_KEY'</span> // 私钥对应的账号</span><br><span class="line">&#125;);</span><br><span class="line">console.log(r);</span><br></pre></td></tr></table></figure>
-
-<h2 id="delegatebw"><a href="#delegatebw" class="headerlink" title="delegatebw"></a>delegatebw</h2><hr>
-<p>抵押通证获取 cpu 和带宽资源</p>
-<h3 id="参数-2"><a href="#参数-2" class="headerlink" title="参数"></a>参数</h3><table>
-<thead>
-<tr>
-<th>name</th>
-<th>type</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>from</td>
-<td>string</td>
-<td>资源抵押者的账户名</td>
-</tr>
-<tr>
-<td>receiver</td>
-<td>string</td>
-<td>资源接受者的账户名</td>
-</tr>
-<tr>
-<td>stake_net_quantity</td>
-<td>string</td>
-<td>抵押者为接受者抵押 FO 获取 NET</td>
-</tr>
-<tr>
-<td>stake_cpu_quantity</td>
-<td>string</td>
-<td>抵押者为接受者抵押 FO 获取 CPU</td>
-</tr>
-<tr>
-<td>transfer</td>
-<td>bool</td>
-<td>代表抵押资源同时是否将对应通证转账给接受者</td>
-</tr>
-</tbody></table>
-<h3 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">const FIBOS = require(<span class="hljs-string">'fibos.js'</span>);</span><br><span class="line"></span><br><span class="line">const fibos_client = FIBOS(&#123;</span><br><span class="line">  // fibos 测试网 chainId</span><br><span class="line">  chainId: <span class="hljs-string">'68cee14f598d88d340b50940b6ddfba28c444b46cd5f33201ace82c78896793a'</span>,</span><br><span class="line">  keyProvider: <span class="hljs-string">'PRIVATE_KEY'</span>, // 你的私钥</span><br><span class="line">  httpEndpoint: <span class="hljs-string">'http://api.testnet.fo'</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">let</span> ctx = fibos_client.contractSync(<span class="hljs-string">'eosio'</span>);</span><br><span class="line"></span><br><span class="line">var r = ctx.delegatebwSync(&#123;</span><br><span class="line">      from: <span class="hljs-string">'ACCOUNT_OF_MORTGAGOR'</span>,</span><br><span class="line">      receiver: <span class="hljs-string">'ACCOUNT_OF_RECEIVER'</span>,</span><br><span class="line">      stake_net_quantity: <span class="hljs-string">'3193.0000 FO'</span>,</span><br><span class="line">      stake_cpu_quantity: <span class="hljs-string">'30000.0000 FO'</span>,</span><br><span class="line">      transfer: 0</span><br><span class="line">&#125;,&#123;</span><br><span class="line">    authorization: <span class="hljs-string">'ACCOUNT_FOR_PRIVATE_KEY'</span> // 私钥对应的账号</span><br><span class="line">&#125;);</span><br><span class="line">console.log(r);</span><br></pre></td></tr></table></figure>
-
-<h2 id="claimrewards"><a href="#claimrewards" class="headerlink" title="claimrewards"></a>claimrewards</h2><hr>
-<p>区块生产者领取工资</p>
-<h3 id="参数-3"><a href="#参数-3" class="headerlink" title="参数"></a>参数</h3><table>
-<thead>
-<tr>
-<th>name</th>
-<th>type</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>owner</td>
-<td>string</td>
-<td>区块生产者名称</td>
-</tr>
-</tbody></table>
-<h3 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h3><figure class="highlight bash hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const FIBOS = require(<span class="hljs-string">'fibos.js'</span>);</span><br><span class="line"></span><br><span class="line">const fibos_client = FIBOS(&#123;</span><br><span class="line">  // fibos 测试网 chainId</span><br><span class="line">  chainId: <span class="hljs-string">'68cee14f598d88d340b50940b6ddfba28c444b46cd5f33201ace82c78896793a'</span>,</span><br><span class="line">  keyProvider: <span class="hljs-string">'PRIVATE_KEY'</span>, // 你的私钥</span><br><span class="line">  httpEndpoint: <span class="hljs-string">'http://api.testnet.fo'</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="hljs-built_in">let</span> ctx = fibos_client.contractSync(<span class="hljs-string">'eosio'</span>);</span><br><span class="line"></span><br><span class="line">var r = ctx.claimrewardsSync(&#123;</span><br><span class="line">    owner: <span class="hljs-string">'ACCOUNT_OR_OWNER'</span></span><br><span class="line">&#125;,&#123;</span><br><span class="line">    authorization: <span class="hljs-string">'ACCOUNT_FOR_PRIVATE_KEY'</span> // 私钥对应的账号</span><br><span class="line">&#125;);</span><br><span class="line">console.log(r);</span><br></pre></td></tr></table></figure>
-        </div>
-        
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/d3j/" rel="tag">d3j</a>
-                </div>
-            </div>
         </div>
         
         
@@ -337,17 +216,10 @@
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/10/31/SystemPermisson/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">SystemPermisson</span>
-            </a>
-        </div>
-        
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/10/29/Hello-fibjs/">
-                <span class="level-item">Installing Fibos</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/11/26/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E9%9C%80%E6%B1%82/">
+                <span class="level-item">深度共享需求</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -779,7 +651,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/deemo.jpg" alt="SystemContract" height="28">
+                    <img src="/images/deemo.jpg" alt="深度共享动态布单" height="28">
                 
                 </a>
                 <p class="is-size-7">
