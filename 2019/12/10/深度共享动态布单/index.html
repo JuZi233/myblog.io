@@ -8,19 +8,19 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>深度共享动态布单 - YvYi&#39;s Blog</title>
+<title>深度共享V2 - YvYi&#39;s Blog</title>
 
 
     <meta name="description" content="动态布单实现方案原方案（非动态）：1: 流程开始，批量全部撤单2: 风控检测，获取用户盘口，计算深度数据3: 根据深度数据计算交叉比率，根据交叉比率判断是否进行交叉消除，若交叉消除则不走补，布单，直接转至step5，否则下一步4: 补单 =》 布单5: 随机判断是否执行跑量脚本6: END">
 <meta name="keywords" content="life code games">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深度共享动态布单">
+<meta property="og:title" content="深度共享V2">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;10&#x2F;%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E5%8A%A8%E6%80%81%E5%B8%83%E5%8D%95&#x2F;index.html">
 <meta property="og:site_name" content="YvYi&#39;s Blog">
 <meta property="og:description" content="动态布单实现方案原方案（非动态）：1: 流程开始，批量全部撤单2: 风控检测，获取用户盘口，计算深度数据3: 根据深度数据计算交叉比率，根据交叉比率判断是否进行交叉消除，若交叉消除则不走补，布单，直接转至step5，否则下一步4: 补单 =》 布单5: 随机判断是否执行跑量脚本6: END">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;og_image.png">
-<meta property="og:updated_time" content="2019-12-10T02:31:42.641Z">
+<meta property="og:updated_time" content="2020-01-06T03:59:38.819Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;images&#x2F;og_image.png">
 
@@ -80,7 +80,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/deemo.jpg" alt="深度共享动态布单" height="28">
+                <img src="/images/deemo.jpg" alt="深度共享V2" height="28">
             
             </a>
         </div>
@@ -145,7 +145,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 482 个字)
+                    14 分钟 读完 (大约 2170 个字)
                 </span>
                 
                 
@@ -159,19 +159,51 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                深度共享动态布单
+                深度共享V2
             
         </h1>
         <div class="content">
-            <h3 id="动态布单实现方案"><a href="#动态布单实现方案" class="headerlink" title="动态布单实现方案"></a>动态布单实现方案</h3><p>原方案（非动态）：<br>1: 流程开始，批量全部撤单<br>2: 风控检测，获取用户盘口，计算深度数据<br>3: 根据深度数据计算交叉比率，根据交叉比率判断是否进行交叉消除，若交叉消除则不走补，布单，直接转至step5，否则下一步<br>4: 补单 =》 布单<br>5: 随机判断是否执行跑量脚本<br>6: END</p>
+            <h2 id="动态布单实现方案"><a href="#动态布单实现方案" class="headerlink" title="动态布单实现方案"></a>动态布单实现方案</h2><p>原方案（非动态）：<br>1: 流程开始，批量全部撤单<br>2: 风控检测，获取用户盘口，计算深度数据<br>3: 根据深度数据计算交叉比率，根据交叉比率判断是否进行交叉消除，若交叉消除则不走补，布单，直接转至step5，否则下一步<br>4: 补单 =》 布单<br>5: 随机判断是否执行跑量脚本<br>6: END</p>
 <a id="more"></a>
 
 <p>目标效果：<br>解决原方案中同时出现大量的撤单，布单现象，实现随机撤，布单</p>
-<p>目标方案：<br>1: 流程开始不撤单，取所有挂单集合A<br>2: 进行风控检测，获取用户盘口，根据第一步取到的挂单在用户盘口中排除部分深度数据，得到总盘口ex<br>3: 根据总盘口ex计算深度数据，并根据深度数据计算交叉比率判断是否进行交叉消除，若交叉消除则将交叉单数组C与挂单集合A随机组合进行撤布单,转至step5；不交叉消除则执行step4<br>4: 不交叉消除，进行补单操作，再根据深度数据计算需要布单的数组B，将A，B两个数组随机合并，进行撤，布单。<br>5: 随机判断是否执行跑量脚本<br>6: END</p>
-<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>1: 如何剔除初始盘口中的已挂单深度数据，判断条件是什么<br>    比如AEX交易所中已挂单返回结果是：</p>
+<p>目标方案A：<br>1: 流程开始不撤单，取所有挂单集合A<br>2: 进行风控检测，获取用户盘口，根据第一步取到的挂单在用户盘口中排除部分深度数据，得到总盘口ex<br>3: 根据总盘口ex计算深度数据，并根据深度数据计算交叉比率判断是否进行交叉消除，若交叉消除则将交叉单数组C与挂单集合A随机组合进行撤布单,转至step5；不交叉消除则执行step4<br>4: 不交叉消除，进行补单操作，再根据深度数据计算需要布单的数组B，将A，B两个数组随机合并，进行撤，布单。<br>5: 随机判断是否执行跑量脚本<br>6: END</p>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>1: 如何剔除初始盘口中的已挂单深度数据<br>    比如AEX交易所中已挂单返回结果是：</p>
 <p><img src="/images/pasted-16.png" alt="已挂单接数据"><br>是否根据一个 { price，amount，type }来确定筛除一个bid或者一个ask。</p>
 <p><img src="/images/pasted-17.png" alt="深度数据"></p>
+<p>Answer:<br>将返回的orderList封装成bids和asks的数组格式A，遍历A，从深度数据数组中移除等量的orders price和amount，达到完全将A清空。排除完成。</p>
 <p>2: 原流程中撤单有失败流程直接结束，动态布单中若撤单失败，是结束流程还继续布单</p>
+<p>3: 根据挂单剔除深度是否根据不同交易所来剔除，例如aex的挂单要在aexDepth中剔除<br>Answer： 根据不同交易所分开来剔除深度，剔除方向由高往低或者由低往高都可以    </p>
+<h3 id="深度共享-动态布单方案："><a href="#深度共享-动态布单方案：" class="headerlink" title="深度共享 动态布单方案："></a>深度共享 动态布单方案：</h3><p>step1: 首先套利（交叉消除），撤掉自己的在套利区间内的挂单，再交叉消除，1秒1次<br>计算出交叉消除区间后，在交叉消除前撤掉自己区间内的挂单，避免自己跟自己成交</p>
+<p>step2: 补单，在补单区间内撤掉自己的单，然后进行补单操作，1秒1次<br>在计算出补单额度后，在进行补单前撤掉自己在补单区间内的挂单，避免自己跟自己成交</p>
+<p>step3: 撤/布单（调单：先算目标深度、基础深度）<br>待撤单：撤掉各个交易所账户中所有本轮中目标深度与现有挂单不一致的应撤挂单<br>待布单：根据目标深度计算出应布单<br>将应撤，布单根据随机排序组合打乱然后进行撤布单操作。    </p>
+<p>撤布单实现步骤：</p>
+<pre><code>步骤1: 实时获取当前账户的挂单数组A（待撤单），计算出当前目标深度应布单数组B（待挂单）
+
+步骤2: 计算当前挂单A中待撤单与B中待挂单价位是否交叉，若同价位同数量单在A，B中都存在，则将该单从A，B中剔除。若同价位，撤单与挂单数量不一致则根据情况在A或B中剔除。
+
+步骤3: 将计算完后的A，B随机组合，在接下来的8秒内分散进行撤单及布单</code></pre><p>PS：</p>
+<p>1: 套利和补单操作需要在1S的计时器中执行    </p>
+<p>2: 在套利，补单完成后</p>
+<h3 id="深度共享-动态布单方案：-1"><a href="#深度共享-动态布单方案：-1" class="headerlink" title="深度共享 动态布单方案："></a>深度共享 动态布单方案：</h3><p>step1:  首先套利（交叉消除），撤掉自己的在套利区间内的挂单，再交叉消除，1秒1次<br>计算出交叉消除区间后，在交叉消除前撤掉自己区间内的挂单，避免自己跟自己成交</p>
+<p>step2:  补单，在补单区间内撤掉自己的单，然后进行补单操作，1秒1次<br>在计算出补单额度后，在进行补单前撤掉自己在补单区间内的挂单，避免自己跟自己成交    </p>
+<p>step3:  撤/布单<br>    步骤1: 拿实际深度跟目标深度比，将二者按小数点后四位合并（0.009871，0.009872==》0.00987），比较二者同档位数量，若实际深度比目标深度高则撤掉多出的部分，反之则布相应数量的单。<br>    步骤2: 撤，布单顺序按照数量差额从大到小排序    </p>
+<p>问题：<br>1:之前目标深度的算法（取dex交易所lastprice价格按20%幅度分档）得出的目标深度与现布单策略不匹配，导致目标深度和实际深度中没有同价位的深度    </p>
+<p>2:存在目标深度与实际深度价位 不匹配的项是否直接跳过。    </p>
+<p>3:撤/布单是否单独列入计时器中 与 套利补单互斥执行。    </p>
+<h3 id="深度共享-动态布单方案：-2"><a href="#深度共享-动态布单方案：-2" class="headerlink" title="深度共享 动态布单方案："></a>深度共享 动态布单方案：</h3><p>step0:  判断是第一轮共享，是则把所有挂单都撤掉<br>step1:  首先套利（交叉消除），撤掉自己的在套利区间内的挂单，再交叉消除，1秒1次<br>计算出交叉消除区间后，在交叉消除前撤掉自己区间内的挂单，避免自己跟自己成交</p>
+<p>step2:  补单，在补单区间内撤掉自己的单，然后进行补单操作，1秒1次<br>在计算出补单额度后，在进行补单前撤掉自己在补单区间内的挂单，避免自己跟自己成交    </p>
+<p>step3:  撤/布单<br>    第一轮: 取dex的lastprice，根据上下20%分成20档得出目标深度，根据目标深度进行布单<br>    第N 轮: 拿个人当前挂单深度跟根据目标深度算出的待挂单深度比，将二者按小数点后四位合并（0.009871，0.009872==》0.00987，精度后面的数直接丢掉，最后一位卖进一，买减一），比较二者同档位数量，若实际深度比目标深度高则撤掉该单，反之则布二者差额数量的单，二者皆仅取最大值的那一单。    </p>
+<p>step5: 1～50随机执行一次跑量脚本<br>step4: 深度共享周期由10s调整为1s，跑量频率对应要降低    </p>
+<p>问题：<br>1:之前目标深度的算法（取dex交易所lastprice价格按20%幅度分档）得出的目标深度与现布单策略不匹配，导致目标深度和实际深度中没有同价位的深度    </p>
+<p>2:存在目标深度与实际深度价位 不匹配的项是否直接跳过。    </p>
+<p>3:撤/布单是否单独列入计时器中 与 套利补单互斥执行。    </p>
+<h4 id="补单系数需求开发"><a href="#补单系数需求开发" class="headerlink" title="补单系数需求开发"></a>补单系数需求开发</h4><p>原始需求：在补单时，各个交易所的实际补单数量=原始值*补单系数，并且在补完单后初始FO总数要随上一轮忽略的补单值而变动，补单系数可以在页面上进行配置。    </p>
+<p>开发方案：在补单过程patchOrder中新增系数配置，根据不同交易所的不同系数进行补单，补单结束后同步更新配置文件/conf/config.js中的totalfo=totalfo+-差额（根据实际情况）。</p>
+<p>进度： 开发已完成，测试环境试运行</p>
+<h4 id="深度共享配置页面化"><a href="#深度共享配置页面化" class="headerlink" title="深度共享配置页面化"></a>深度共享配置页面化</h4><p>原始需求：将深度共享的配置项文件/conf/config.js中的配置项展示到页面上来，并可以在页面上对其进行修改且实时生效    </p>
+<p>开发方案：在server.js中新增/showconf，/updateconf两个接口分别用于展示和修改配置文件/conf/config.json，在testdepth.js中，每一轮都重新读取config.json的值执行深度共享</p>
+<p>进度： 开发已完成，测试账号正常运行。</p>
 
         </div>
         
@@ -215,6 +247,13 @@
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/12/31/%E6%B3%B0%E5%BE%97/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">泰得</span>
+            </a>
+        </div>
         
         
         <div class="level-end">
@@ -296,7 +335,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        9
+                        10
                     </p>
                 </div>
             </div>
@@ -451,16 +490,35 @@
         
         <article class="media">
             
+            <a href="/2019/12/31/%E6%B3%B0%E5%BE%97/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="泰得">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-31T06:44:00.000Z">2019-12-31</time></div>
+                    <a href="/2019/12/31/%E6%B3%B0%E5%BE%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">泰得</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/10/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E5%8A%A8%E6%80%81%E5%B8%83%E5%8D%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="深度共享动态布单">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="深度共享V2">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-10T01:03:21.000Z">2019-12-10</time></div>
-                    <a href="/2019/12/10/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E5%8A%A8%E6%80%81%E5%B8%83%E5%8D%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">深度共享动态布单</a>
+                    <a href="/2019/12/10/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E5%8A%A8%E6%80%81%E5%B8%83%E5%8D%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">深度共享V2</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -491,14 +549,14 @@
             
             <a href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="深度共享">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="深度共享定义">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-18T06:54:00.000Z">2019-11-18</time></div>
-                    <a href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">深度共享</a>
+                    <a href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">深度共享定义</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -525,25 +583,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/11/04/Ubuntu%E4%B8%AD%E4%BD%BF%E7%94%A8SFTP%E6%9C%8D%E5%8A%A1/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Ubuntu中使用SFTP服务">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-04T07:40:00.000Z">2019-11-04</time></div>
-                    <a href="/2019/11/04/Ubuntu%E4%B8%AD%E4%BD%BF%E7%94%A8SFTP%E6%9C%8D%E5%8A%A1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Ubuntu中使用SFTP服务</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/study/">study</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -561,7 +600,7 @@
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -651,11 +690,11 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/deemo.jpg" alt="深度共享动态布单" height="28">
+                    <img src="/images/deemo.jpg" alt="深度共享V2" height="28">
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 &nbsp;
+                &copy; 2020 &nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">YvYi</a>
                 
                 <br>

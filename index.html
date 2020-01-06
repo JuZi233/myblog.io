@@ -139,13 +139,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-12-10T01:03:21.000Z">2019-12-10</time>
+                <time class="level-item has-text-grey" datetime="2019-12-31T06:44:00.000Z">2019-12-31</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 482 个字)
+                    2 分钟 读完 (大约 269 个字)
                 </span>
                 
                 
@@ -154,11 +154,58 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/12/10/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E5%8A%A8%E6%80%81%E5%B8%83%E5%8D%95/">深度共享动态布单</a>
+                <a class="has-link-black-ter" href="/2019/12/31/%E6%B3%B0%E5%BE%97/">泰得</a>
             
         </h1>
         <div class="content">
-            <h3 id="动态布单实现方案"><a href="#动态布单实现方案" class="headerlink" title="动态布单实现方案"></a>动态布单实现方案</h3><p>原方案（非动态）：<br>1: 流程开始，批量全部撤单<br>2: 风控检测，获取用户盘口，计算深度数据<br>3: 根据深度数据计算交叉比率，根据交叉比率判断是否进行交叉消除，若交叉消除则不走补，布单，直接转至step5，否则下一步<br>4: 补单 =》 布单<br>5: 随机判断是否执行跑量脚本<br>6: END</p>
+            <p>1: 在前端将支付成功的trx_id发送给后端后，拿trx_id去事务表查询        </p>
+<p>2: 将链上的转账信息存入流水表pay中，pay表字段如下：    </p>
+<p>| from | to | currency | amout | createtime | memo | tranId |<br>| — | — | — | — | — | — | — | — |<br>| 转账者 | 接受者账号 | 币种 | 金额 | 创建时间 | memo(含orderId） | 事务ID |</p>
+<p>3: 流水表pay和订单表orders通过order.Id进行关联<br>orderId和前端约定为order_xxxx格式</p>
+<p>4: 用户付款后，前端发送订单信息，根据orderId关联查询orders和pay中是否有相关记录，有则修改支付状态为成功，否则返回失败</p>
+<p>PS：<br>1: 事务表关联检车区块表，等待2分48秒去区块表查询区块状态确认为不可逆才能确认支付成功<br>2分48秒后不停去查询可逆状态，如果30秒内查询到的都是可逆状态，那么区块出问题了，返回给前端，让前端手动确认交易成功，后端接受后直接判定支付成功</p>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    
+<div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-12-10T01:03:21.000Z">2019-12-10</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    14 分钟 读完 (大约 2170 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/12/10/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E5%8A%A8%E6%80%81%E5%B8%83%E5%8D%95/">深度共享V2</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="动态布单实现方案"><a href="#动态布单实现方案" class="headerlink" title="动态布单实现方案"></a>动态布单实现方案</h2><p>原方案（非动态）：<br>1: 流程开始，批量全部撤单<br>2: 风控检测，获取用户盘口，计算深度数据<br>3: 根据深度数据计算交叉比率，根据交叉比率判断是否进行交叉消除，若交叉消除则不走补，布单，直接转至step5，否则下一步<br>4: 补单 =》 布单<br>5: 随机判断是否执行跑量脚本<br>6: END</p>
         </div>
         
         
@@ -194,7 +241,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 645 个字)
+                    6 分钟 读完 (大约 930 个字)
                 </span>
                 
                 
@@ -207,7 +254,7 @@
             
         </h1>
         <div class="content">
-            <h5 id="2019-11-25日"><a href="#2019-11-25日" class="headerlink" title="2019-11-25日"></a>2019-11-25日</h5><p><img src="/images/pasted-11.png" alt="清单"></p>
+            <h4 id="2019-11-25日"><a href="#2019-11-25日" class="headerlink" title="2019-11-25日"></a>2019-11-25日</h4><p><img src="/images/pasted-11.png" alt="清单"></p>
         </div>
         
         
@@ -252,7 +299,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/">深度共享</a>
+                <a class="has-link-black-ter" href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/">深度共享定义</a>
             
         </h1>
         <div class="content">
@@ -642,7 +689,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        9
+                        10
                     </p>
                 </div>
             </div>
@@ -797,16 +844,35 @@
         
         <article class="media">
             
+            <a href="/2019/12/31/%E6%B3%B0%E5%BE%97/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="泰得">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-31T06:44:00.000Z">2019-12-31</time></div>
+                    <a href="/2019/12/31/%E6%B3%B0%E5%BE%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">泰得</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/10/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E5%8A%A8%E6%80%81%E5%B8%83%E5%8D%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="深度共享动态布单">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="深度共享V2">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-10T01:03:21.000Z">2019-12-10</time></div>
-                    <a href="/2019/12/10/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E5%8A%A8%E6%80%81%E5%B8%83%E5%8D%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">深度共享动态布单</a>
+                    <a href="/2019/12/10/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E5%8A%A8%E6%80%81%E5%B8%83%E5%8D%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">深度共享V2</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -837,14 +903,14 @@
             
             <a href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="深度共享">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="深度共享定义">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-18T06:54:00.000Z">2019-11-18</time></div>
-                    <a href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">深度共享</a>
+                    <a href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">深度共享定义</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -871,25 +937,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/11/04/Ubuntu%E4%B8%AD%E4%BD%BF%E7%94%A8SFTP%E6%9C%8D%E5%8A%A1/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Ubuntu中使用SFTP服务">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-04T07:40:00.000Z">2019-11-04</time></div>
-                    <a href="/2019/11/04/Ubuntu%E4%B8%AD%E4%BD%BF%E7%94%A8SFTP%E6%9C%8D%E5%8A%A1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Ubuntu中使用SFTP服务</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/study/">study</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
         
@@ -907,7 +954,7 @@
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -999,16 +1046,35 @@
         
         <article class="media">
             
+            <a href="/2019/12/31/%E6%B3%B0%E5%BE%97/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="泰得">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-31T06:44:00.000Z">2019-12-31</time></div>
+                    <a href="/2019/12/31/%E6%B3%B0%E5%BE%97/" class="title has-link-black-ter is-size-6 has-text-weight-normal">泰得</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/12/10/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E5%8A%A8%E6%80%81%E5%B8%83%E5%8D%95/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="深度共享动态布单">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="深度共享V2">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-12-10T01:03:21.000Z">2019-12-10</time></div>
-                    <a href="/2019/12/10/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E5%8A%A8%E6%80%81%E5%B8%83%E5%8D%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">深度共享动态布单</a>
+                    <a href="/2019/12/10/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB%E5%8A%A8%E6%80%81%E5%B8%83%E5%8D%95/" class="title has-link-black-ter is-size-6 has-text-weight-normal">深度共享V2</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1039,14 +1105,14 @@
             
             <a href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/" class="media-left">
                 <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="深度共享">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="深度共享定义">
                 </p>
             </a>
             
             <div class="media-content">
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-18T06:54:00.000Z">2019-11-18</time></div>
-                    <a href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">深度共享</a>
+                    <a href="/2019/11/18/%E6%B7%B1%E5%BA%A6%E5%85%B1%E4%BA%AB/" class="title has-link-black-ter is-size-6 has-text-weight-normal">深度共享定义</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1073,25 +1139,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/11/04/Ubuntu%E4%B8%AD%E4%BD%BF%E7%94%A8SFTP%E6%9C%8D%E5%8A%A1/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="Ubuntu中使用SFTP服务">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-11-04T07:40:00.000Z">2019-11-04</time></div>
-                    <a href="/2019/11/04/Ubuntu%E4%B8%AD%E4%BD%BF%E7%94%A8SFTP%E6%9C%8D%E5%8A%A1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Ubuntu中使用SFTP服务</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/study/">study</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
     
@@ -1109,7 +1156,7 @@
                     <span class="level-item">十二月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1198,7 +1245,7 @@
                 
                 </a>
                 <p class="is-size-7">
-                &copy; 2019 &nbsp;
+                &copy; 2020 &nbsp;
                 Powered by <a href="https://hexo.io/" target="_blank">YvYi</a>
                 
                 <br>
